@@ -9,26 +9,8 @@ call plug#begin('~/.config/nvim/plugged')
     " airline is a better status line and a tab-bar for nvim.
     Plug 'bling/vim-airline'
 
-    " haskell-vim plugin
-    Plug 'https://github.com/neovimhaskell/haskell-vim.git'
-
-    " NERDTree
-    Plug 'https://github.com/scrooloose/nerdtree.git'
-
-    " CtrlP
-    Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-
-    " Neomake
-    Plug 'https://github.com/neomake/neomake.git'
-
-    " vimproc.vim
-    Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-
-    " Tabular
-    Plug 'https://github.com/godlygeek/tabular'
-
-    " Surround
-    Plug 'https://github.com/tpope/vim-surround'
+    " Vim-Go
+    Plug 'fatih/vim-go'
 " }
 
 call plug#end()
@@ -48,6 +30,11 @@ set smartindent
 set autoindent
 set softtabstop=2
 set laststatus=0
+
+"au FileType go set noexpandtab
+"au FileType go set shiftwidth=4
+"au FileType go set softtabstop=4
+"au FileType go set tabstop=4
 
 hi Keyword ctermfg=darkcyan
 hi Constant ctermfg=5*
@@ -100,38 +87,16 @@ endif
 " Plugin Settings {
     " Airline {
     " }
-    " Haskell-vim {
-        let g:haskell_classic_highlighting = 1
-        let g:haskell_indent_if = 3
-        let g:haskell_indent_case = 2
-        let g:haskell_indent_let = 4
-        let g:haskell_indent_where = 6
-        let g:haskell_indent_before_where = 2
-        let g:haskell_indent_after_bare_where = 2
-        let g:haskell_indent_do = 3
-        let g:haskell_indent_in = 1
-        let g:haskell_indent_guard = 2
-        let g:haskell_indent_case_alternative = 1
-        let g:cabal_indent_section = 2
+    " Vim-Go {
+    let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_auto_sameids = 1
+let g:go_fmt_command = "goimports"
     " }
-    " NERDTree {
-       "Open NERDTree when nvim starts
-       " autocmd StdinReadPre * let s:std_in=1
-       " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-       "Toggle NERDTree with Ctrl-N
-       " map <Leader>n :NERDTreeToggle<CR>
-
-       "Show hidden files in NERDTree
-       " let NERDTreeShowHidden=1
-    " }
-    " CtrlP {
-    " }
-    " Neomake {
-       let g:neomake_haskell_enabled_makers = []
-    " }
-    " Tabular {
-       nnoremap <leader>= :Tabularize /=<CR>
-       nnoremap <leader>- :Tabularize /-><CR>
-       nnoremap <leader>, :Tabularize /,<CR>
-       nnoremap <leader># :Tabularize /#-}<CR>
+" }
