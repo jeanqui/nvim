@@ -34,9 +34,6 @@ set softtabstop=2
 set laststatus=0
 set syntax=context
 
-set termguicolors
-colorscheme cobalt2
-
 "au FileType go set noexpandtab
 "au FileType go set shiftwidth=4
 "au FileType go set softtabstop=4
@@ -83,10 +80,17 @@ endif
     " Airline {
     " }
     " vim-tex {
-		let g:vimtex_compiler_progname = '/home/jean/.local/bin/nvr'
-    let g:vimtex_view_general_viewer = 'zathura'
-		let g:vimtex_view_method = 'zathura'
-    let g:tex_flavor = 'latex'
+		let g:vimtex_view_general_viewer = 'SumatraPDF.exe'
+		let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+		let g:vimtex_view_general_options
+                \ = '-reuse-instance -forward-search @tex @line @pdf'
+                \ . ' -inverse-search "gvim --servername ' . v:servername
+                \ . ' --remote-send \"^<C-\^>^<C-n^>'
+                \ . ':drop \%f^<CR^>:\%l^<CR^>:normal\! zzzv^<CR^>'
+                \ . ':execute ''drop '' . fnameescape(''\%f'')^<CR^>'
+                \ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
+                \ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
+		let g:tex_flavor = 'latex'
     let g:vimtex_indent_enabled = 0
     " }
     " autopairs {
