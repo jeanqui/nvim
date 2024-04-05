@@ -8,6 +8,7 @@ ftplugin
 ginit.vim
 neoconf.json
 queries
+lua/plugins/dap.lua
 
 # Global gitignore
 # ----------------
@@ -44,3 +45,5 @@ tags
 
 # JetBrains
 .idea
+lua/plugins/dap.lua
+lua/plugins/dap.lua
