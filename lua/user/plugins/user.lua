@@ -11,10 +11,4 @@ return {
   -- },
   "vim-syntastic/syntastic",
   "nvie/vim-flake8",
-  {
-    "github/copilot.vim",
-    event = "InsertEnter",
-    autoStart = true,
-    lazy = false,
-  },
 }
