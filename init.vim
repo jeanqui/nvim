@@ -1,4 +1,5 @@
-syntax enable
+syntax on
+filetype indent on
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -13,9 +14,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'gertjanreynaert/cobalt2-vim-theme'
     Plug 'fmoralesc/molokayo'
     Plug 'herrbischoff/cobalt2.vim'
+		Plug 'dracula/vim', { 'as':'dracula' }
 
     " Auto-close
-    Plug 'jiangmiao/auto-pairs'
+		Plug 'sirver/ultisnips'
+		Plug 'honza/vim-snippets'
 " }
 
 call plug#end()
@@ -29,10 +32,10 @@ set shiftwidth=2        " Indentation amount for < and > commands.
 set colorcolumn=121
 set showmode
 set smartcase
-set noautoindent
+set nocindent
+set nosmartindent
 set softtabstop=2
 set laststatus=0
-set syntax=context
 
 "au FileType go set noexpandtab
 "au FileType go set shiftwidth=4
@@ -45,6 +48,12 @@ hi Comment ctermfg=2*
 hi Normal ctermbg=none
 hi LineNr ctermfg=darkgrey
 
+setlocal spell
+set spelllang=en_us
+hi clear SpellBad
+hi SpellBad cterm=underline
+hi SpellBad gui=undercurl
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -76,25 +85,21 @@ if !&sidescrolloff
     set sidescrolloff=5   " Show next 5 columns while side-scrolling.
 endif
 
+let g:python_host_prog = 'C:\Python27\python.exe'
+let g:python3_host_prog = 'C:\Users\Jean\AppData\Local\Programs\Python\Python310\python.exe'
+
 " Plugin Settings {
     " Airline {
     " }
     " vim-tex {
 		let g:vimtex_view_general_viewer = 'SumatraPDF.exe'
 		let g:vimtex_view_general_options_latexmk = '-reuse-instance'
-		let g:vimtex_view_general_options
-                \ = '-reuse-instance -forward-search @tex @line @pdf'
-                \ . ' -inverse-search "gvim --servername ' . v:servername
-                \ . ' --remote-send \"^<C-\^>^<C-n^>'
-                \ . ':drop \%f^<CR^>:\%l^<CR^>:normal\! zzzv^<CR^>'
-                \ . ':execute ''drop '' . fnameescape(''\%f'')^<CR^>'
-                \ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
-                \ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
-		let g:tex_flavor = 'latex'
     let g:vimtex_indent_enabled = 0
     " }
-    " autopairs {
-    let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'`````', '"""':'"""""', "'''":"'''''", '$':'$'}
-    " }
+		" UltiSnips {
+		let g:UltiSnipsExpandTrigger = '<tab>'
+    let g:UltiSnipsJumpForwardTrigger = '<tab>'
+    let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+		" }		
 " }
 
